@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'dart:async';
 
 class ArticleView extends StatefulWidget {
-  late final String blogUrl;
+  final String blogUrl;
   ArticleView({required this.blogUrl});
 
   @override
@@ -11,8 +10,15 @@ class ArticleView extends StatefulWidget {
 }
 
 class _ArticleViewState extends State<ArticleView> {
-  final Completer<WebViewController> _completer =
-      Completer<WebViewController>();
+  late final WebViewController _controller; // Declare the WebViewController
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadRequest(Uri.parse(widget.blogUrl));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +38,7 @@ class _ArticleViewState extends State<ArticleView> {
           Opacity(
             opacity: 0,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16,),
+              padding: EdgeInsets.symmetric(horizontal: 16),
               child: Icon(Icons.save),
             ),
           ),
@@ -40,13 +46,8 @@ class _ArticleViewState extends State<ArticleView> {
         elevation: 0.0,
       ),
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width:MediaQuery.of(context).size.width,
-        child: WebView(
-          initialUrl: widget.blogUrl,
-          onWebViewCreated: ((WebViewController webViewController) {
-            _completer.complete(webViewController);
-          }),
+        child: WebViewWidget(
+          controller: _controller, // Pass the controller to WebViewWidget
         ),
       ),
     );

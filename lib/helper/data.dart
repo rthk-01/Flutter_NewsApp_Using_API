@@ -7,7 +7,7 @@ List<CategoryModel> getCategories(){
 
   //1
   categoryModel = new CategoryModel();
-  categoryModel.categoryName = "BBC News";
+  categoryModel.categoryName = "Business";
   categoryModel.imageUrl = "https://imgs.search.brave.com/KGvAmoxDivsujtoeIlYRZIEzfwev6A0XpCIG0OOLo3M/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjM2/ODAzMDIyL3Bob3Rv/L25ld3Mtb24tbGFw/dG9wLXNjcmVlbi5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/R2QwZWtuZVZuMS1O/Umdtay1nU0hvaExY/VWNsTUlmTzRvMi1s/d3hqZzBxQT0";
   category.add(categoryModel);
 
